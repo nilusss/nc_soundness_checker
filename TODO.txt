@@ -1,0 +1,29 @@
+nc_checker
+
+"This is bad"
+
+"Yippeeee"
+#Geo check
+Check for more than four sided polys
+Check for non manifold faces
+Check for lamina faces
+Check normals are facing the right direction
+Delete all history
+
+
+#Transform
+Freeze transforms
+Place geo in a top node
+Place top group node pivot in world 0
+No geo below -0.005 in Y
+
+#Naming
+Check tht geo and group have a number padding
+Check that geo and group nodes end in _geo/_grp
+
+
+#UV checking
+Check for open UV Seams
+Check for overlapping UVs
+Check for inverted UVs
+
