@@ -3,12 +3,18 @@ nc_checker
 "This is bad"
 
 "Yippeeee"
+
+#Overall
+Soften/harden edges
+
+
 #Geo check
-Check for more than four sided polys
+check for open borders - ✔
+Check for more than four sided polys - ✔
 Check for non manifold faces
 Check for lamina faces
 Check normals are facing the right direction
-Delete all history
+Delete all history - ✔
 
 
 #Transform
