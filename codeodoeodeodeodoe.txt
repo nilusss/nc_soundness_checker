@@ -1,0 +1,59 @@
+import maya.cmds as mc
+import maya.OpenMaya as om
+import time
+
+
+def face_normal(face):
+    polyface = cmds.polyListComponentConversion(face, tvf = True)
+    xes = cmds.polyNormalPerVertex(polyface, q=True, x =True)
+    yes = cmds.polyNormalPerVertex(polyface, q=True, y =True)
+    zes = cmds.polyNormalPerVertex(polyface, q=True, z =True)
+    divisor = 1.0 / len(xes)
+    return sum(xes)* divisor, sum(yes)  * divisor, sum(zes) * divisor
+
+
+origObjs = mc.ls(sl=True)
+
+for obj in origObjs:
+    face_count = cmds.polyEvaluate(obj, f=True)
+    print obj
+    for index in range(face_count):
+        print face_normal('{}.f[{}]'.format(obj,index))
+    print "\n"
+    dupObj = mc.duplicate(rr=True)[0]
+    
+    ass = mc.polyNormal(normalMode=2, userNormalMode=0, ch=1)
+    mc.select(clear=True)
+    face_count = cmds.polyEvaluate(dupObj, f=True)
+    print dupObj
+    for index in range(face_count):
+        print face_normal('{}.f[{}]'.format(dupObj,index))
+    print "\n"
+    
+
+
+
+
+
+
+
+
+
+mc.select(cl=True)
+
+dupFace = mc.polyInfo(dupObj, fn=True )
+for index, face in enumerate(origFace):
+
+    if face == dupFace[index]:
+        print "same face normal"
+    else:
+        print "different face normal"
+        cmds.select(origObj + '.f[{}]'.format(index) , add=True)
+
+
+
+
+cmds.select('pSphere1.f[100]')
+
+cmds.select('pSphere2.f[100]')
+

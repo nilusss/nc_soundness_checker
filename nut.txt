@@ -1,0 +1,37 @@
+import maya.cmds as mc
+
+origObjs = mc.ls(sl=True)
+
+for obj in origObjs:
+    # get the face normals of the first object
+    origFace = mc.polyInfo(obj, fn=True )
+    
+    # duplicate the object and use conform on the duplicate
+    dupObj = mc.duplicate(obj, rr=True)
+    dupShape = mc.listRelatives(dupObj, shapes=True)
+    mc.polyNormal(normalMode=2, userNormalMode=0, ch=1)
+    
+    mc.select(clear=True)
+    
+    # get the face normals of the duplicate object
+    dupFace = mc.polyInfo(dupShape, fn=True)
+    
+
+mc.select(cl=True)
+
+dupFace = mc.polyInfo(dupObj, fn=True )
+for index, face in enumerate(origFace):
+
+    if face == dupFace[index]:
+        print "same face normal"
+    else:
+        print "different face normal"
+        cmds.select(origObj + '.f[{}]'.format(index) , add=True)
+
+
+
+
+cmds.select('pSphere1.f[100]')
+
+cmds.select('pSphere2.f[100]')
+
