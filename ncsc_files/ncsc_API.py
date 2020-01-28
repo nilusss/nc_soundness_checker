@@ -60,3 +60,12 @@ def ncsc_get_obj_from_pref():
         sel = ncsc_get_meshes_from_sel()
 
     return sel
+
+
+def face_normal(face):
+    polyface = mc.polyListComponentConversion(face, tvf=True)
+    xes = mc.polyNormalPerVertex(polyface, q=True, x=True)
+    yes = mc.polyNormalPerVertex(polyface, q=True, y=True)
+    zes = mc.polyNormalPerVertex(polyface, q=True, z=True)
+    divisor = 1.0 / len(xes)
+    return sum(xes) * divisor, sum(yes) * divisor, sum(zes) * divisor

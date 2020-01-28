@@ -12,8 +12,8 @@ Soften/harden edges
 check for open borders - ✔
 Check for more than four sided polys - ✔
 Check for non manifold faces - ✔
-Check for lamina faces
-Check normals are facing the right direction
+Check for lamina faces - ✔
+Check normals are facing the right direction - ✔
     select original geo, duplicate conform on new geo. match polyinfo faceNormals between the two and select the conformed polys on the original model
 Delete all history - ✔
 
