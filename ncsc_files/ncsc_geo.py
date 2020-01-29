@@ -1,4 +1,5 @@
-# scripts related to the GEO module
+""" scripts related to the GEO module """
+
 import maya.cmds as mc
 import maya.mel as mel
 import ncsc_API as api
@@ -48,7 +49,6 @@ def ncsc_more_than_four():
     """
 
     api.ncsc_get_obj_from_pref()
-
     mel.eval('polyCleanupArgList 4 {"0", "2", "1", "0", "1", "0", "0", "0", "0", "1e-05", "0", "1e-05", "0", "1e-05", "0", "1", "0", "0"}')
 
 
@@ -57,7 +57,6 @@ def ncsc_more_than_four_fix():
     """
 
     api.ncsc_get_obj_from_pref()
-
     mel.eval('polyCleanupArgList 4 {"0", "1", "1", "0", "1", "0", "0", "0", "0", "1e-05", "0", "1e-05", "0", "1e-05", "0", "1", "0", "0"}')
 
 
@@ -70,10 +69,8 @@ def ncsc_normal_dir():
     if sel:
         obj_face_normal = []
         dup_obj_face_normal = []
-
         for index, obj in enumerate(sel):
             face_count = mc.polyEvaluate(obj, f=True)
-
             # Iterate through the object's faces and get the normal vector using api.face_normal
             for index in range(face_count):
                 obj_face_normal.append(api.face_normal('{}.f[{}]'.format(obj,index)))
@@ -83,19 +80,18 @@ def ncsc_normal_dir():
             mc.polyNormal(dup_obj, normalMode=2, userNormalMode=0, ch=1)
             mc.select(clear=True)
             face_count = mc.polyEvaluate(dup_obj, f=True)
-
             # Iterate through the duplicate object's faces and get the normal vector using api.face_normal
             for index in range(face_count):
                 dup_obj_face_normal.append(api.face_normal('{}.f[{}]'.format(dup_obj, index)))
 
             mc.select(clear=True)
-
             # Compare face normals, and select the ones that are different on the original object
             for index in range(len(obj_face_normal)):
                 if obj_face_normal[index] != dup_obj_face_normal[index]:
                     mc.select(obj + '.f[{}]'.format(index), add=True)
 
             face_sel = mc.ls(sl=True)
+
             return face_sel
     else:
         mc.warning("No objects selected!")
@@ -104,6 +100,7 @@ def ncsc_normal_dir():
 def ncsc_normal_dir_fix(poly_sel):
     """Reverse the selected polygons
     """
+
     if poly_sel:
         mc.polyNormal(normalMode=0, userNormalMode=0, ch=1)
     else:
@@ -115,7 +112,6 @@ def ncsc_non_manifold_faces():
     """
 
     api.ncsc_get_obj_from_pref()
-
     mel.eval('polyCleanupArgList 3 {"0", "2","1","0","0","0","0","0","0","1e-05","0","1e-05","0","1e-05","0","2","0"}')
 
 
@@ -124,21 +120,20 @@ def ncsc_non_manifold_faces_fix():
     """
 
     api.ncsc_get_obj_from_pref()
-
     mel.eval('polyCleanupArgList 3 {"0", "1","1","0","0","0","0","0","0","1e-05","0","1e-05","0","1e-05","0","2","0"}')
 
 
 def ncsc_lamina_faces():
     """Check for lamina faces and select them
     """
-    api.ncsc_get_obj_from_pref()
 
+    api.ncsc_get_obj_from_pref()
     mel.eval('polyCleanupArgList 4 { "0","2","1","0","0","0","0","0","0","1e-05","0","1e-05","0","1e-05","0","-1","1","0" }')
 
 
 def ncsc_lamina_faces_fix():
     """Check for lamina faces and select them
     """
-    api.ncsc_get_obj_from_pref()
 
+    api.ncsc_get_obj_from_pref()
     mel.eval('polyCleanupArgList 4 { "0","1","1","0","0","0","0","0","0","1e-05","0","1e-05","0","1e-05","0","-1","1","0" }')
