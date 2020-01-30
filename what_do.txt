@@ -30,6 +30,7 @@ Samling af environment sker i unreal og bliver derefter exporteret som en fbx fi
 fbx filen bliver gemt inde i "Environment_name(asset)">Export mappen.
 Denne fbx fil bliver saa referencet ind i de shot scener hvor den skal bruges.
 Dette goer det lettere naar animation skal exportes fra maya og ind i unreal, da den beholder positionen.
+Man kan vaelge alle rigs og eksportere deres animation i samme fbx. unreal engine kan saa se hvilke rigs de passer til.
 2.I selve scenen "Environment_name(asset)" referencer man tilhoerende props ind. 
 Alt dette puttes i en gruppe og exporteres som et "setExport".
 "setExport" er det vi bruger til vores shots i maya hvor alt skal samles. 
