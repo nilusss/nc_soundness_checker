@@ -25,7 +25,7 @@ Place top group node pivot in world 0
 No geo below -0.005 in Y
 
 #Naming
-Check tht geo and group have a number padding
+Check tht geo and group have letter padding
 Check that geo and group nodes end in _geo/_grp
 
 
