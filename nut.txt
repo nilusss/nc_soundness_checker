@@ -1,37 +1,60 @@
 import maya.cmds as mc
+import nc_soundeness_checker as ch
 
-origObjs = mc.ls(sl=True)
 
-for obj in origObjs:
-    # get the face normals of the first object
-    origFace = mc.polyInfo(obj, fn=True )
-    
-    # duplicate the object and use conform on the duplicate
-    dupObj = mc.duplicate(obj, rr=True)
-    dupShape = mc.listRelatives(dupObj, shapes=True)
-    mc.polyNormal(normalMode=2, userNormalMode=0, ch=1)
-    
-    mc.select(clear=True)
-    
-    # get the face normals of the duplicate object
-    dupFace = mc.polyInfo(dupShape, fn=True)
-    
+from nc_soundeness_checker import ncsc_files
+from nc_soundeness_checker.ncsc_files import ncsc_API
+from nc_soundeness_checker.ncsc_files import ncsc_geo
+from nc_soundeness_checker.ncsc_files import ncsc_transform
 
-mc.select(cl=True)
+reload(ch)
+reload(ncsc_files)
+reload(ncsc_API)
+reload(ncsc_geo)
+reload(ncsc_transform)
 
-dupFace = mc.polyInfo(dupObj, fn=True )
-for index, face in enumerate(origFace):
 
-    if face == dupFace[index]:
-        print "same face normal"
+ncsc_API.ncsc_get_obj_from_pref()
+
+
+ncsc_geo.ncsc_delete_history()
+
+ncsc_geo.ncsc_get_borders()
+ncsc_geo.ncsc_get_borders_fix()
+
+ncsc_geo.ncsc_more_than_four()
+ncsc_geo.ncsc_more_than_four_fix()
+
+ncsc_geo.ncsc_non_manifold_faces()
+ncsc_geo.ncsc_non_manifold_faces_fix()
+
+bingbong = ncsc_geo.ncsc_normal_dir()
+ncsc_geo.ncsc_normal_dir_fix(bingbong)
+
+ncsc_geo.ncsc_lamina_faces()
+ncsc_geo.ncsc_lamina_faces_fix()
+
+ncsc_transform.ncsc_freeze_trans()
+
+ncsc_transform.ncsc_place_top_node()
+
+ncsc_transform.ncsc_zero_pivot()
+
+ncsc_transform.ncsc_move_above_zero()
+
+sel = cmds.ls(sl=True)
+
+sel = mc.ls(sl=True)
+
+for obj in sel:
+
+    bbox = mc.polyEvaluate(boundingBox=True)
+
+    y = str(bbox[1]).split(",")[0].replace("(", "")
+    clean_y = float(y.replace("-", ""))
+    if float(y) < 0:
+        cur_y = mc.getAttr(obj + '.ty')
+        new_y = float(clean_y) + float(cur_y)
+        mc.setAttr(obj + '.ty', new_y)
     else:
-        print "different face normal"
-        cmds.select(origObj + '.f[{}]'.format(index) , add=True)
-
-
-
-
-cmds.select('pSphere1.f[100]')
-
-cmds.select('pSphere2.f[100]')
-
+        mc.warning("Object is not below 0 in world Y")
