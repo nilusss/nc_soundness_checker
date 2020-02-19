@@ -1,8 +1,14 @@
 """ scripts related to the Transform module """
 
-import maya.cmds as mc
-import maya.mel as mel
+import os
+
 import ncsc_API as api
+
+try:
+    import maya.cmds as mc
+    import maya.mel as mel
+except ImportError:
+    pass
 
 
 def ncsc_freeze_trans():
@@ -23,19 +29,23 @@ def ncsc_place_top_node():
     sel = mc.ls(geometry=True)
     if not sel:
         mc.warning("You need to have geometry in your scene")
-    elif mc.objExists("geo"):
+    elif mc.objExists("geo") or mc.objExists("*_grp"):
         mc.warning("You already have a \"geo\" node")
     else:
-        geo_node = mc.createNode("transform", n="geo")
+        filepath = mc.file(q=True, sn=True)
+        filename = os.path.basename(filepath)
+        asset_name = filename.split("_")[0].split(".")[0]
+        grp_node_name = asset_name + "_grp"
+        grp_node = mc.createNode("transform", n=grp_node_name)
         sel = mc.ls(assemblies=True, l=True)
         temp_sel = []
         for s in range(len(sel)):
             temp_sel = mc.listRelatives(sel[s], s=True)
-            if sel[s] == "|geo":
+            if sel[s] == "|"+grp_node_name:
                 continue
             if temp_sel is None or mc.objectType(temp_sel[0]) == "mesh":
-                mc.parent(sel[s], geo_node)
-        mc.select("geo")
+                mc.parent(sel[s], grp_node)
+        mc.select(grp_node_name)
 
 
 def ncsc_zero_pivot():
