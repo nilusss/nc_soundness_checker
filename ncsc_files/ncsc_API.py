@@ -10,8 +10,8 @@ def ncsc_select_all_objs():
         list -- Return all objects using a checkbox from the UI
     """
 
-    if mc.window("nc_soundness_checker", exists=True):
-        return mc.menuItem("ncsc_select_all_geo", q=True, checkBox=True)
+    if mc.optionVar(q='ncsc_checbox') == 1:
+        return mc.optionVar(q='ncsc_checbox')
 
 
 def ncsc_get_mesh(obj):
@@ -38,11 +38,12 @@ def ncsc_get_meshes_from_sel():
     Returns:
         list -- All objects from the viewport that are of type 'mesh'
     """
-
-    sel = mc.ls(sl=True)
-    meshes = [ncsc_get_mesh(obj) for obj in sel]
-
-    return meshes
+    try:
+        sel = mc.ls(sl=True)
+        meshes = [ncsc_get_mesh(obj) for obj in sel]
+        return meshes
+    except:
+        return False
 
 
 def ncsc_get_obj_from_pref():
@@ -58,7 +59,11 @@ def ncsc_get_obj_from_pref():
     else:
         sel = ncsc_get_meshes_from_sel()
 
-    return sel
+    if sel:
+        return sel
+    else:
+        mc.warning("No objects have been selected!")
+        return False
 
 
 def face_normal(face):

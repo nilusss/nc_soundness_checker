@@ -15,11 +15,18 @@ def ncsc_freeze_trans():
     """Freeze transforms on the selected node
     """
 
-    api.ncsc_get_meshes_from_sel()
-    try:
-        mc.makeIdentity(apply=True, t=1, r=1, s=1, n=0)
-    except:
-        mc.warning("No objects selected!")
+    sel = api.ncsc_get_obj_from_pref()
+    if sel:
+        for obj in sel:
+            if mc.objExists(obj):
+                mc.select(obj)
+                mc.makeIdentity(apply=True, t=1, r=1, s=1, n=0, pn=1)
+
+    sel = mc.ls(sl=True)
+    if sel:
+        mc.makeIdentity(apply=True, t=1, r=1, s=1, n=0, pn=1)
+    else:
+        mc.warning("No objects have been selected!")    
 
 
 def ncsc_place_top_node():
