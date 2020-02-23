@@ -20,6 +20,8 @@ import maya.OpenMayaUI as omui
 import shiboken2
 import ncsc_files.ncsc_geo as geo
 import ncsc_files.ncsc_transform as trans
+import ncsc_files.ncsc_naming as naming
+import ncsc_files.ncsc_uv as uv
 from PySide2 import QtCore, QtGui, QtUiTools, QtWidgets
 from pyside2uic import compileUi
 
@@ -85,16 +87,41 @@ class SoundnessCheckerWindow(QtWidgets.QDialog):
 
         # ## Transform ## #
         # Freeze transform
-        self.ui.ft_fix_btn.clicked.connect(self.ft_fix)
+        self.ui.ft_all_btn.clicked.connect(self.ft_all)
+        self.ui.ft_selected_btn.clicked.connect(self.ft_selected)
 
         # Place top node
         self.ui.ptn_fix_btn.clicked.connect(self.ptn_fix)
 
         # Zero pivot
-        self.ui.zp_fix_btn.clicked.connect(self.zp_fix)
+        self.ui.zp_all_btn.clicked.connect(self.zp_all)
+        self.ui.zp_selected_btn.clicked.connect(self.zp_selected)
+
+        # Center pivot
+        self.ui.cp_all_btn.clicked.connect(self.cp_all)
+        self.ui.cp_selected_btn.clicked.connect(self.cp_selected)
+
+        # Zero object
+        self.ui.zo_all_btn.clicked.connect(self.zo_all)
+        self.ui.zo_selected_btn.clicked.connect(self.zo_selected)
 
         # Move above zero
-        self.ui.maz_fix_btn.clicked.connect(self.maz_fix)
+        self.ui.maz_all_btn.clicked.connect(self.maz_all)
+        self.ui.maz_selected_btn.clicked.connect(self.maz_selected)
+
+        # ## Naming ## #
+        # Material and Shading Group prefix
+        self.ui.cm_fix_btn.clicked.connect(self.cm_fix)
+
+        # Add suffix to groups and geometry
+        self.ui.cs_fix_btn.clicked.connect(self.cs_fix)
+
+        # ## UV's ## #
+        # Overlapping UV's
+        self.ui.ou_show_btn.clicked.connect(self.ou_show)
+
+        # Inverted UV's
+        self.ui.iu_show_btn.clicked.connect(self.iu_show)
 
     def checkbox_state(self):
         if self.ui.checkBox.isChecked():
@@ -145,11 +172,11 @@ class SoundnessCheckerWindow(QtWidgets.QDialog):
 
     # ## Transform ## #
 
-    def ft_fix(self):
-        trans.ncsc_freeze_trans()
+    def ft_all(self):
+        trans.ncsc_freeze_trans(all=True)
 
-    def ft_show(self):
-        trans.ncsc_freeze_trans()
+    def ft_selected(self):
+        trans.ncsc_freeze_trans(all=False)
 
     def ptn_fix(self):
         trans.ncsc_place_top_node()
@@ -157,17 +184,43 @@ class SoundnessCheckerWindow(QtWidgets.QDialog):
     def ptn_show(self):
         trans.ncsc_place_top_node()
 
-    def zp_fix(self):
-        trans.ncsc_zero_pivot()
+    def zp_all(self):
+        trans.ncsc_zero_pivot(all=True)
 
-    def zp_show(self):
-        trans.ncsc_zero_pivot()
+    def zp_selected(self):
+        trans.ncsc_zero_pivot(all=False)
 
-    def maz_fix(self):
-        trans.ncsc_move_above_zero()
+    def cp_all(self):
+        trans.ncsc_center_pivot(all=True)
 
-    def maz_show(self):
-        trans.ncsc_move_above_zero()
+    def cp_selected(self):
+        trans.ncsc_center_pivot(all=False)
+
+    def zo_all(self):
+        trans.ncsc_zero_object(all=True)
+
+    def zo_selected(self):
+        trans.ncsc_zero_object(all=False)
+
+    def maz_all(self):
+        trans.ncsc_move_above_zero(all=True)
+
+    def maz_selected(self):
+        trans.ncsc_move_above_zero(all=False)
+
+    # ## Naming ## #
+    def cm_fix(self):
+        naming.ncsc_materials()
+
+    def cs_fix(self):
+        naming.ncsc_suffix()
+
+    # ## UV's ## #
+    def ou_show(self):
+        uv.ncsc_overlapping_uvs()
+
+    def iu_show(self):
+        uv.ncsc_inverted_uvs()
 
 
 def openui():

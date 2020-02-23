@@ -55,14 +55,18 @@ def ncsc_get_obj_from_pref():
 
     sel = []
     if ncsc_select_all_objs():
-        sel = mc.ls(exactType="mesh")
+        sel = []
+        mesh = mc.ls(exactType="mesh")
+        for obj in mesh:
+            rel = mc.listRelatives(obj, parent=True)
+            sel.extend(rel)
     else:
         sel = ncsc_get_meshes_from_sel()
 
     if sel:
         return sel
     else:
-        mc.warning("No objects have been selected!")
+        mc.warning("No nodes have been selected!")
         return False
 
 

@@ -41,9 +41,9 @@
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>-104</y>
+           <y>0</y>
            <width>346</width>
-           <height>696</height>
+           <height>727</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -62,7 +62,7 @@
                 <item row="0" column="0">
                  <widget class="QCheckBox" name="checkBox">
                   <property name="text">
-                   <string>Select All Geomtry</string>
+                   <string>Select All Geometry</string>
                   </property>
                  </widget>
                 </item>
@@ -98,6 +98,47 @@
                 <widget class="QPushButton" name="dh_fix_btn">
                  <property name="text">
                   <string>Fix</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="normal_direction_layout">
+               <item>
+                <widget class="QLabel" name="nd_lbl">
+                 <property name="toolTip">
+                  <string>Select the normals that are turning the &quot;wrong&quot; way</string>
+                 </property>
+                 <property name="text">
+                  <string>Normal Direction</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_11">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QPushButton" name="nd_fix_btn">
+                 <property name="text">
+                  <string>Fix</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="nd_show_btn">
+                 <property name="text">
+                  <string>Show</string>
                  </property>
                 </widget>
                </item>
@@ -186,47 +227,6 @@
               </layout>
              </item>
              <item>
-              <layout class="QHBoxLayout" name="normal_direction_layout">
-               <item>
-                <widget class="QLabel" name="nd_lbl">
-                 <property name="toolTip">
-                  <string>Select the normals that are turning the &quot;wrong&quot; way</string>
-                 </property>
-                 <property name="text">
-                  <string>Normal Direction</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_11">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QPushButton" name="nd_fix_btn">
-                 <property name="text">
-                  <string>Fix</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="nd_show_btn">
-                 <property name="text">
-                  <string>Show</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
               <layout class="QHBoxLayout" name="non_manifold_layout">
                <item>
                 <widget class="QLabel" name="nm_lbl">
@@ -253,6 +253,9 @@
                </item>
                <item>
                 <widget class="QPushButton" name="nm_fix_btn">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="text">
                   <string>Fix</string>
                  </property>
@@ -294,6 +297,9 @@
                </item>
                <item>
                 <widget class="QPushButton" name="lf_fix_btn">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="text">
                   <string>Fix</string>
                  </property>
@@ -303,6 +309,254 @@
                 <widget class="QPushButton" name="lf_show_btn">
                  <property name="text">
                   <string>Show</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="transform_grpbox">
+            <property name="title">
+             <string>Transform</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_6">
+             <item>
+              <layout class="QHBoxLayout" name="place_top_node_layout">
+               <item>
+                <widget class="QLabel" name="ptn_lbl">
+                 <property name="toolTip">
+                  <string>Places a top node for all geometry in the scene.</string>
+                 </property>
+                 <property name="text">
+                  <string>Place Top Node</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_2">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QPushButton" name="ptn_fix_btn">
+                 <property name="text">
+                  <string>Fix</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="zero_pivot_layout">
+               <item>
+                <widget class="QLabel" name="zp_lbl">
+                 <property name="toolTip">
+                  <string>Places the node pivot in world 0, 0, 0</string>
+                 </property>
+                 <property name="text">
+                  <string>Zero Pivot</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_3">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QPushButton" name="zp_all_btn">
+                 <property name="text">
+                  <string>All</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="zp_selected_btn">
+                 <property name="text">
+                  <string>Selected</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="center_pivot_layout">
+               <item>
+                <widget class="QLabel" name="cp_lbl">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Centers the pivot&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Center Pivot</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_14">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QPushButton" name="cp_all_btn">
+                 <property name="text">
+                  <string>All</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="cp_selected_btn">
+                 <property name="text">
+                  <string>Selected</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="zero_object_layout">
+               <item>
+                <widget class="QLabel" name="zo_lbl">
+                 <property name="toolTip">
+                  <string>Places the node pivot in world 0, 0, 0</string>
+                 </property>
+                 <property name="text">
+                  <string>Zero Object</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_15">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QPushButton" name="zo_all_btn">
+                 <property name="text">
+                  <string>All</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="zo_selected_btn">
+                 <property name="text">
+                  <string>Selected</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="move_above_zero_layout">
+               <item>
+                <widget class="QLabel" name="maz_lbl">
+                 <property name="toolTip">
+                  <string>Move geometry above -0.005</string>
+                 </property>
+                 <property name="text">
+                  <string>Move Above Zero</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_4">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QPushButton" name="maz_all_btn">
+                 <property name="text">
+                  <string>All</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="maz_selected_btn">
+                 <property name="text">
+                  <string>Selected</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="freeze_trans_layout">
+               <item>
+                <widget class="QLabel" name="ft_lbl">
+                 <property name="toolTip">
+                  <string>Freeze transforms</string>
+                 </property>
+                 <property name="text">
+                  <string>Freeze Transforms</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QPushButton" name="ft_all_btn">
+                 <property name="text">
+                  <string>All</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="ft_selected_btn">
+                 <property name="text">
+                  <string>Selected</string>
                  </property>
                 </widget>
                </item>
@@ -426,198 +680,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QGroupBox" name="transform_grpbox">
-            <property name="title">
-             <string>Transform</string>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_6">
-             <item>
-              <layout class="QHBoxLayout" name="place_top_node_layout">
-               <item>
-                <widget class="QLabel" name="ptn_lbl">
-                 <property name="toolTip">
-                  <string>Places a top node for all geometry in the scene.</string>
-                 </property>
-                 <property name="text">
-                  <string>Place Top Node</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_2">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QPushButton" name="ptn_fix_btn">
-                 <property name="text">
-                  <string>Fix</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="zero_pivot_layout">
-               <item>
-                <widget class="QLabel" name="zp_lbl">
-                 <property name="toolTip">
-                  <string>Places the node pivot in world 0, 0, 0</string>
-                 </property>
-                 <property name="text">
-                  <string>Zero Pivot</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_3">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QPushButton" name="zp_fix_btn_2">
-                 <property name="text">
-                  <string>All</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="zp_fix_btn">
-                 <property name="text">
-                  <string>Selected</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="move_above_zero_layout">
-               <item>
-                <widget class="QLabel" name="maz_lbl">
-                 <property name="toolTip">
-                  <string>Move geometry above -0.005</string>
-                 </property>
-                 <property name="text">
-                  <string>Move Above Zero</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_4">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QPushButton" name="maz_fix_btn">
-                 <property name="text">
-                  <string>Fix</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="freeze_trans_layout">
-               <item>
-                <widget class="QLabel" name="ft_lbl">
-                 <property name="toolTip">
-                  <string>Freeze transforms</string>
-                 </property>
-                 <property name="text">
-                  <string>Freeze Transforms</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QPushButton" name="ft_fix_btn_2">
-                 <property name="text">
-                  <string>All</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="ft_fix_btn">
-                 <property name="text">
-                  <string>Selected</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
            <widget class="QGroupBox" name="uv_grpbox">
             <property name="title">
              <string>UV</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_8">
-             <item>
-              <layout class="QHBoxLayout" name="open_uv_seams_layout">
-               <item>
-                <widget class="QLabel" name="ous_lbl">
-                 <property name="toolTip">
-                  <string>Checks for open UV seams</string>
-                 </property>
-                 <property name="text">
-                  <string>Open UV Seams</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="ous_fix_btn">
-                 <property name="text">
-                  <string>Fix</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="ous_show_btn">
-                 <property name="text">
-                  <string>Show</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
              <item>
               <layout class="QHBoxLayout" name="overlapping_uvs_layout">
                <item>
@@ -631,11 +698,17 @@
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="ou_fix_btn">
-                 <property name="text">
-                  <string>Fix</string>
+                <spacer name="horizontalSpacer_16">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
                  </property>
-                </widget>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
                </item>
                <item>
                 <widget class="QPushButton" name="ou_show_btn">
@@ -659,11 +732,17 @@
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="iu_fix_btn">
-                 <property name="text">
-                  <string>Fix</string>
+                <spacer name="horizontalSpacer_17">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
                  </property>
-                </widget>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
                </item>
                <item>
                 <widget class="QPushButton" name="iu_show_btn">
