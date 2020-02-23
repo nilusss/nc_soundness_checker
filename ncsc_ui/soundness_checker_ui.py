@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:\Users\nilas\Documents\maya\2019\scripts\nc_soundeness_checker\ncsc_ui/soundness_checker_ui.ui'
+# Form implementation generated from reading ui file 'C:\Users\nilas\Documents\maya\2019\scripts\nc_soundness_checker\ncsc_ui/soundness_checker_ui.ui'
 #
-# Created: Fri Feb 21 13:01:36 2020
+# Created: Fri Feb 21 17:30:30 2020
 #      by: pyside2-uic  running on PySide2 2.0.0~alpha0
 #
 # WARNING! All changes made in this file will be lost!
@@ -260,7 +260,7 @@ class Ui_SoundnessChecker(object):
         QtCore.QMetaObject.connectSlotsByName(SoundnessChecker)
 
     def retranslateUi(self, SoundnessChecker):
-        SoundnessChecker.setWindowTitle(QtWidgets.QApplication.translate("SoundnessChecker", "Dialog", None, -1))
+        SoundnessChecker.setWindowTitle(QtWidgets.QApplication.translate("SoundnessChecker", "nc - Soundness Checker", None, -1))
         self.geo_grpbox.setTitle(QtWidgets.QApplication.translate("SoundnessChecker", "Geometry", None, -1))
         self.dh_lbl.setToolTip(QtWidgets.QApplication.translate("SoundnessChecker", "Delete the history on all or selected objects", None, -1))
         self.dh_lbl.setText(QtWidgets.QApplication.translate("SoundnessChecker", "Delete History", None, -1))

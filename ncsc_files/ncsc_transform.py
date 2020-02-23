@@ -15,13 +15,6 @@ def ncsc_freeze_trans():
     """Freeze transforms on the selected node
     """
 
-    sel = api.ncsc_get_obj_from_pref()
-    if sel:
-        for obj in sel:
-            if mc.objExists(obj):
-                mc.select(obj)
-                mc.makeIdentity(apply=True, t=1, r=1, s=1, n=0, pn=1)
-
     sel = mc.ls(sl=True)
     if sel:
         mc.makeIdentity(apply=True, t=1, r=1, s=1, n=0, pn=1)
@@ -37,7 +30,7 @@ def ncsc_place_top_node():
     if not sel:
         mc.warning("You need to have geometry in your scene")
     elif mc.objExists("geo") or mc.objExists("*_grp"):
-        mc.warning("You already have a \"geo\" node")
+        mc.warning("You already have a \"_grp\" node")
     else:
         filepath = mc.file(q=True, sn=True)
         filename = os.path.basename(filepath)
@@ -84,7 +77,9 @@ def ncsc_move_above_zero():
         if float(y) < 0:
             cur_y = mc.getAttr(obj + '.ty')
             new_y = float(clean_y) + float(cur_y)
-            mc.setAttr(obj + '.ty', new_y)
+            print mc.move(new_y, y=True, ws=True, a=True)
+            print "ass"
+            #mc.setAttr(obj + '.ty', new_y)
         else:
             mc.warning("Object is not below 0 in world Y")
 

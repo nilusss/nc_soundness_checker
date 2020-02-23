@@ -38,6 +38,7 @@ def compile_ui(fdir, file_name):
     compileUi("{}/{}".format(fdir, file_name), pyfile, False, 4, False)
     pyfile.close()
     from ncsc_ui import soundness_checker_ui as scui
+    reload(scui)
 
 
 def maya_main_window():
@@ -48,9 +49,8 @@ def maya_main_window():
 class SoundnessCheckerWindow(QtWidgets.QDialog):
     def __init__(self, parent=None):
         super(SoundnessCheckerWindow, self).__init__(parent)
-        self._scwin = None
-        self.setParent(parent, QtCore.Qt.WindowStaysOnTopHint)
         self.setWindowTitle("Soundness Checker")
+        self.setParent(parent, QtCore.Qt.WindowStaysOnTopHint)
         self.setWindowFlags(QtCore.Qt.Tool)
         self.ui = scui.Ui_SoundnessChecker()
         self.ui.setupUi(self)
@@ -170,7 +170,6 @@ class SoundnessCheckerWindow(QtWidgets.QDialog):
         trans.ncsc_move_above_zero()
 
 
-
 def openui():
     try:
         ui.deleteLater()
@@ -178,6 +177,7 @@ def openui():
         pass
 
     ui = SoundnessCheckerWindow(parent=maya_main_window())
+    ui.setWindowTitle("Soundness Checker")
     ui.show()
 
 
