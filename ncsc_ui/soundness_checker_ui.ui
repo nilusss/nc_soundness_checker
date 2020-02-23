@@ -32,7 +32,7 @@
       <property name="spacing">
        <number>5</number>
       </property>
-      <item row="1" column="0">
+      <item row="0" column="0">
        <widget class="QScrollArea" name="scrollArea">
         <property name="widgetResizable">
          <bool>true</bool>
@@ -41,9 +41,9 @@
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>0</y>
+           <y>-104</y>
            <width>346</width>
-           <height>640</height>
+           <height>696</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -53,6 +53,22 @@
              <string>Geometry</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout">
+             <item>
+              <widget class="QGroupBox" name="groupBox">
+               <property name="title">
+                <string>Select All Geometry in Scene</string>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_3">
+                <item row="0" column="0">
+                 <widget class="QCheckBox" name="checkBox">
+                  <property name="text">
+                   <string>Select All Geomtry</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
              <item>
               <layout class="QHBoxLayout" name="del_hist_layout">
                <item>
@@ -340,7 +356,7 @@
                <item>
                 <widget class="QLabel" name="cm_lbl">
                  <property name="toolTip">
-                  <string>Check that material nodes are named correctly</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Check that material nodes are named with the correct suffix&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="text">
                   <string>Materials</string>
@@ -396,6 +412,9 @@
                </item>
                <item>
                 <widget class="QPushButton" name="lp_fix_btn">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="text">
                   <string>Fix</string>
                  </property>
@@ -472,9 +491,16 @@
                 </spacer>
                </item>
                <item>
+                <widget class="QPushButton" name="zp_fix_btn_2">
+                 <property name="text">
+                  <string>All</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QPushButton" name="zp_fix_btn">
                  <property name="text">
-                  <string>Fix</string>
+                  <string>Selected</string>
                  </property>
                 </widget>
                </item>
@@ -540,9 +566,16 @@
                 </spacer>
                </item>
                <item>
+                <widget class="QPushButton" name="ft_fix_btn_2">
+                 <property name="text">
+                  <string>All</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QPushButton" name="ft_fix_btn">
                  <property name="text">
-                  <string>Fix</string>
+                  <string>Selected</string>
                  </property>
                 </widget>
                </item>
@@ -646,22 +679,6 @@
           </item>
          </layout>
         </widget>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QGroupBox" name="groupBox">
-        <property name="title">
-         <string>Select All Geometry in Scene</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_3">
-         <item row="0" column="0">
-          <widget class="QCheckBox" name="checkBox">
-           <property name="text">
-            <string>Select All Geomtry</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
        </widget>
       </item>
      </layout>
