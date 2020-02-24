@@ -14,7 +14,7 @@ def onMayaDroppedPythonFile(*args):
     getShelf = mc.tabLayout(gShelfTopLevel, query=True, selectTab=True)
 
     mc.setParent(getShelf)
-    mc.shelfButton(command="import nc_soundness_checker;from nc_soundness_checker import soundness_checker as sc; sc.openui()",
+    mc.shelfButton(command="from nc_soundness_checker import soundness_checker as sc; sc.openui()",
                    annotation="Soundness Checker",
                    label="SC",
                    image=filePath + "/icons/icon.png",
